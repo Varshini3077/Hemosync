@@ -1,0 +1,47 @@
+{
+  "name": "HemoSync Dev Container",
+  "image": "mcr.microsoft.com/devcontainers/typescript-node:20",
+  "features": {
+    "ghcr.io/devcontainers/features/azure-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/github-cli:1": {
+      "version": "latest"
+    },
+    "ghcr.io/devcontainers/features/docker-in-docker:2": {
+      "version": "latest",
+      "dockerDashComposeVersion": "v2"
+    }
+  },
+  "postCreateCommand": "npm install -g pnpm@9 @azure/functions-core-tools@4 --unsafe-perm && pnpm install",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-azuretools.vscode-azurefunctions",
+        "ms-azuretools.vscode-bicep",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "ms-playwright.playwright",
+        "ms-vscode.azure-account",
+        "ms-azuretools.vscode-cosmosdb",
+        "redhat.vscode-yaml",
+        "ms-vscode.vscode-typescript-next"
+      ],
+      "settings": {
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode",
+        "typescript.tsdk": "node_modules/typescript/lib"
+      }
+    }
+  },
+  "forwardPorts": [5173, 7071, 3978, 3000, 5432, 6379],
+  "portsAttributes": {
+    "5173": { "label": "Web Dashboard", "onAutoForward": "openBrowser" },
+    "7071": { "label": "Azure Functions API" },
+    "3978": { "label": "Teams Bot" },
+    "3000": { "label": "WhatsApp Handler" },
+    "5432": { "label": "PostgreSQL" },
+    "6379": { "label": "Redis" }
+  },
+  "remoteUser": "node"
+}
