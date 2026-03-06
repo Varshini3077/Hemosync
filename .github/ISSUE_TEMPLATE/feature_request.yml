@@ -1,0 +1,89 @@
+name: Feature Request
+description: Propose a new feature or enhancement for HemoSync
+title: "[Feature]: "
+labels: ["enhancement", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for suggesting an improvement to HemoSync. Please provide as much context as possible.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Target Component
+      description: Which part of HemoSync would this feature affect?
+      options:
+        - Web Dashboard (apps/web)
+        - Teams Bot (apps/teams-bot)
+        - WhatsApp Handler (apps/whatsapp-handler)
+        - API — parse-request
+        - API — ranked-banks
+        - API — broadcast
+        - API — sms-webhook
+        - API — fallback-donors
+        - API — embed-token
+        - Infrastructure / Bicep
+        - Database schema
+        - Shared packages
+        - New component / service
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem Statement
+      description: Describe the problem or gap this feature would solve.
+      placeholder: Currently, coordinators have no way to see real-time inventory levels of blood banks before broadcasting...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Proposed Solution
+      description: Describe the feature you'd like to see.
+      placeholder: Add a stock-level indicator to the ranked bank list, pulling from eRaktKosh inventory API with a 5-minute Redis cache...
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives Considered
+      description: What other approaches did you consider, and why did you prefer this one?
+
+  - type: dropdown
+    id: azure-services
+    attributes:
+      label: New Azure Services Required?
+      description: Does this feature require adding new Azure services?
+      options:
+        - "No — uses existing services"
+        - "Yes — Azure Cognitive Search"
+        - "Yes — Azure Event Grid"
+        - "Yes — Azure Notification Hubs"
+        - "Yes — Azure SignalR Service"
+        - "Yes — Other (describe below)"
+    validations:
+      required: true
+
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional Context
+      description: Add any mockups, diagrams, or references that would help explain the feature.
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
+        - label: This feature aligns with HemoSync's mission of emergency blood coordination
+          required: true
