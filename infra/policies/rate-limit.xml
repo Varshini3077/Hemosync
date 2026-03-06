@@ -1,0 +1,43 @@
+<!--
+  rate-limit.xml
+  APIM policy: 100 calls per minute per subscription key.
+  Apply at API or product level in the APIM portal or via CI/CD.
+  Uses the subscription ID as the rate-limit counter key so each
+  HemoSync integration has its own independent quota bucket.
+-->
+<policies>
+  <inbound>
+    <base />
+    <rate-limit-by-key
+      calls="100"
+      renewal-period="60"
+      counter-key="@(context.Subscription.Id)"
+      increment-condition="@(context.Response.StatusCode >= 200 &amp;&amp; context.Response.StatusCode &lt; 300)"
+      remaining-calls-header-name="X-RateLimit-Remaining"
+      retry-after-header-name="X-RateLimit-RetryAfter"
+    />
+  </inbound>
+  <backend>
+    <base />
+  </backend>
+  <outbound>
+    <base />
+    <set-header name="X-RateLimit-Limit" exists-action="override">
+      <value>100</value>
+    </set-header>
+  </outbound>
+  <on-error>
+    <base />
+    <choose>
+      <when condition="@(context.LastError.Source == 'rate-limit-by-key')">
+        <return-response>
+          <set-status code="429" reason="Too Many Requests" />
+          <set-header name="Content-Type" exists-action="override">
+            <value>application/json</value>
+          </set-header>
+          <set-body>{"error": "rate_limit_exceeded", "message": "Rate limit of 100 requests per minute exceeded. Please retry after the indicated delay.", "retryAfter": "@(context.Response.Headers.GetValueOrDefault("X-RateLimit-RetryAfter","60"))"}</set-body>
+        </return-response>
+      </when>
+    </choose>
+  </on-error>
+</policies>

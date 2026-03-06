@@ -1,0 +1,44 @@
+<!--
+  cache-lookup.xml
+  APIM policy: 60-second response cache for the ranked-banks endpoint.
+  Blood bank rankings change infrequently (stock updates every few minutes),
+  so a short cache reduces backend load significantly during broadcast storms.
+
+  Cache is varied by bloodType and location query parameters so different
+  blood type/location combinations each get their own cache entry.
+
+  Apply this policy to the ranked-banks operation specifically.
+-->
+<policies>
+  <inbound>
+    <base />
+    <cache-lookup
+      vary-by-developer="false"
+      vary-by-developer-groups="false"
+      downstream-caching-type="none"
+      must-revalidate="false"
+      allow-private-response-caching="false">
+      <!-- Vary cache by blood type and location for per-query caching -->
+      <vary-by-query-parameter>bloodType</vary-by-query-parameter>
+      <vary-by-query-parameter>location</vary-by-query-parameter>
+      <vary-by-query-parameter>units</vary-by-query-parameter>
+      <!-- Vary by subscription to prevent cross-tenant cache poisoning -->
+      <vary-by-header>Ocp-Apim-Subscription-Key</vary-by-header>
+    </cache-lookup>
+  </inbound>
+  <backend>
+    <base />
+  </backend>
+  <outbound>
+    <base />
+    <!-- Cache successful responses for 60 seconds -->
+    <cache-store duration="60" />
+    <!-- Inform clients of cache status -->
+    <set-header name="X-Cache-Status" exists-action="override">
+      <value>MISS</value>
+    </set-header>
+  </outbound>
+  <on-error>
+    <base />
+  </on-error>
+</policies>
