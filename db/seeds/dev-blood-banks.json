@@ -1,0 +1,272 @@
+[
+  {
+    "id": "bb_001",
+    "name": "Safdarjung Hospital Blood Bank",
+    "phone": "+911126165060",
+    "address": "Ansari Nagar, New Delhi 110029",
+    "location": { "lat": 28.5679, "lng": 77.2090, "city": "New Delhi" },
+    "reliabilityScore": 0.85,
+    "isActive": true
+  },
+  {
+    "id": "bb_002",
+    "name": "AIIMS Blood Bank",
+    "phone": "+911126588500",
+    "address": "Sri Aurobindo Marg, Ansari Nagar, New Delhi 110029",
+    "location": { "lat": 28.5672, "lng": 77.2100, "city": "New Delhi" },
+    "reliabilityScore": 0.92,
+    "isActive": true
+  },
+  {
+    "id": "bb_003",
+    "name": "Ram Manohar Lohia Hospital Blood Bank",
+    "phone": "+911123365525",
+    "address": "Baba Kharak Singh Marg, New Delhi 110001",
+    "location": { "lat": 28.6310, "lng": 77.2080, "city": "New Delhi" },
+    "reliabilityScore": 0.83,
+    "isActive": true
+  },
+  {
+    "id": "bb_004",
+    "name": "GTB Hospital Blood Bank",
+    "phone": "+911122902080",
+    "address": "Dilshad Garden, New Delhi 110095",
+    "location": { "lat": 28.6835, "lng": 77.3130, "city": "New Delhi" },
+    "reliabilityScore": 0.78,
+    "isActive": true
+  },
+  {
+    "id": "bb_005",
+    "name": "Lok Nayak Hospital Blood Bank",
+    "phone": "+911123232400",
+    "address": "Jawahar Lal Nehru Marg, New Delhi 110002",
+    "location": { "lat": 28.6372, "lng": 77.2380, "city": "New Delhi" },
+    "reliabilityScore": 0.80,
+    "isActive": true
+  },
+  {
+    "id": "bb_006",
+    "name": "Sir Ganga Ram Hospital Blood Bank",
+    "phone": "+911125750000",
+    "address": "Sir Ganga Ram Hospital Marg, New Delhi 110060",
+    "location": { "lat": 28.6432, "lng": 77.1893, "city": "New Delhi" },
+    "reliabilityScore": 0.88,
+    "isActive": true
+  },
+  {
+    "id": "bb_007",
+    "name": "Fortis Vasant Kunj Blood Bank",
+    "phone": "+911142776222",
+    "address": "Sector B, Pocket 1, Vasant Kunj, New Delhi 110070",
+    "location": { "lat": 28.5205, "lng": 77.1583, "city": "New Delhi" },
+    "reliabilityScore": 0.87,
+    "isActive": true
+  },
+  {
+    "id": "bb_008",
+    "name": "Max Super Speciality Hospital Saket Blood Bank",
+    "phone": "+911126515050",
+    "address": "Press Enclave Road, Saket, New Delhi 110017",
+    "location": { "lat": 28.5245, "lng": 77.2066, "city": "New Delhi" },
+    "reliabilityScore": 0.89,
+    "isActive": true
+  },
+  {
+    "id": "bb_009",
+    "name": "Indraprastha Apollo Hospital Blood Bank",
+    "phone": "+911126925858",
+    "address": "Mathura Road, Sarita Vihar, New Delhi 110076",
+    "location": { "lat": 28.5362, "lng": 77.2870, "city": "New Delhi" },
+    "reliabilityScore": 0.91,
+    "isActive": true
+  },
+  {
+    "id": "bb_010",
+    "name": "BLK-Max Super Speciality Hospital Blood Bank",
+    "phone": "+911130403040",
+    "address": "Pusa Road, Rajinder Nagar, New Delhi 110005",
+    "location": { "lat": 28.6452, "lng": 77.1736, "city": "New Delhi" },
+    "reliabilityScore": 0.86,
+    "isActive": true
+  },
+  {
+    "id": "bb_011",
+    "name": "Medanta — The Medicity Blood Bank",
+    "phone": "+911244141414",
+    "address": "CH Baktawar Singh Road, Sector 38, Gurugram 122001",
+    "location": { "lat": 28.4390, "lng": 77.0427, "city": "Gurugram" },
+    "reliabilityScore": 0.93,
+    "isActive": true
+  },
+  {
+    "id": "bb_012",
+    "name": "Artemis Hospital Blood Bank",
+    "phone": "+911244511111",
+    "address": "Sector 51, Gurugram 122001",
+    "location": { "lat": 28.4289, "lng": 77.0718, "city": "Gurugram" },
+    "reliabilityScore": 0.88,
+    "isActive": true
+  },
+  {
+    "id": "bb_013",
+    "name": "Fortis Memorial Research Institute Blood Bank",
+    "phone": "+911244921021",
+    "address": "Sector 44, Gurugram 122002",
+    "location": { "lat": 28.4567, "lng": 77.0688, "city": "Gurugram" },
+    "reliabilityScore": 0.90,
+    "isActive": true
+  },
+  {
+    "id": "bb_014",
+    "name": "Manipal Hospital Dwarka Blood Bank",
+    "phone": "+911171515050",
+    "address": "Sector 6, Dwarka, New Delhi 110075",
+    "location": { "lat": 28.5933, "lng": 77.0467, "city": "New Delhi" },
+    "reliabilityScore": 0.84,
+    "isActive": true
+  },
+  {
+    "id": "bb_015",
+    "name": "Maulana Azad Medical College Blood Bank",
+    "phone": "+911123236698",
+    "address": "2, Bahadur Shah Zafar Marg, New Delhi 110002",
+    "location": { "lat": 28.6363, "lng": 77.2398, "city": "New Delhi" },
+    "reliabilityScore": 0.79,
+    "isActive": true
+  },
+  {
+    "id": "bb_016",
+    "name": "Max Hospital Patparganj Blood Bank",
+    "phone": "+911143033033",
+    "address": "W-3, Mathura Road, Patparganj, New Delhi 110092",
+    "location": { "lat": 28.6257, "lng": 77.2886, "city": "New Delhi" },
+    "reliabilityScore": 0.86,
+    "isActive": true
+  },
+  {
+    "id": "bb_017",
+    "name": "Venkateshwar Hospital Blood Bank",
+    "phone": "+911145890000",
+    "address": "Sector 18A, Dwarka, New Delhi 110075",
+    "location": { "lat": 28.5530, "lng": 77.0572, "city": "New Delhi" },
+    "reliabilityScore": 0.82,
+    "isActive": true
+  },
+  {
+    "id": "bb_018",
+    "name": "ESIC Hospital Basaidarapur Blood Bank",
+    "phone": "+911125619955",
+    "address": "Ring Road, Basaidarapur, New Delhi 110015",
+    "location": { "lat": 28.6324, "lng": 77.1432, "city": "New Delhi" },
+    "reliabilityScore": 0.75,
+    "isActive": true
+  },
+  {
+    "id": "bb_019",
+    "name": "Dharamshila Narayana Superspeciality Hospital Blood Bank",
+    "phone": "+911143090909",
+    "address": "Vasundhara Enclave, New Delhi 110096",
+    "location": { "lat": 28.6263, "lng": 77.3179, "city": "New Delhi" },
+    "reliabilityScore": 0.84,
+    "isActive": true
+  },
+  {
+    "id": "bb_020",
+    "name": "Indian Red Cross Society Blood Bank",
+    "phone": "+911123716441",
+    "address": "1, Red Cross Road, New Delhi 110001",
+    "location": { "lat": 28.6236, "lng": 77.2127, "city": "New Delhi" },
+    "reliabilityScore": 0.88,
+    "isActive": true
+  },
+  {
+    "id": "bb_021",
+    "name": "National Blood Transfusion Council Blood Bank",
+    "phone": "+911123062230",
+    "address": "17, Siri Institutional Area, New Delhi 110016",
+    "location": { "lat": 28.5498, "lng": 77.2098, "city": "New Delhi" },
+    "reliabilityScore": 0.81,
+    "isActive": true
+  },
+  {
+    "id": "bb_022",
+    "name": "Primus Super Speciality Hospital Blood Bank",
+    "phone": "+911166206620",
+    "address": "2, Chandragupta Marg, Chanakyapuri, New Delhi 110021",
+    "location": { "lat": 28.5958, "lng": 77.1858, "city": "New Delhi" },
+    "reliabilityScore": 0.83,
+    "isActive": true
+  },
+  {
+    "id": "bb_023",
+    "name": "Columbia Asia Hospital Palam Vihar Blood Bank",
+    "phone": "+911244606060",
+    "address": "Plot No. 22, Palam Vihar, Gurugram 122017",
+    "location": { "lat": 28.5064, "lng": 77.0335, "city": "Gurugram" },
+    "reliabilityScore": 0.80,
+    "isActive": true
+  },
+  {
+    "id": "bb_024",
+    "name": "Sarvodaya Hospital Blood Bank",
+    "phone": "+911294237700",
+    "address": "YMCA Road, Sector 8, Faridabad 121006",
+    "location": { "lat": 28.3860, "lng": 77.3050, "city": "Faridabad" },
+    "reliabilityScore": 0.77,
+    "isActive": true
+  },
+  {
+    "id": "bb_025",
+    "name": "Yashoda Super Speciality Hospital Blood Bank",
+    "phone": "+911202677777",
+    "address": "H-1, Kaushambi, Ghaziabad 201010",
+    "location": { "lat": 28.6448, "lng": 77.3280, "city": "Ghaziabad" },
+    "reliabilityScore": 0.81,
+    "isActive": true
+  },
+  {
+    "id": "bb_026",
+    "name": "Max Hospital Vaishali Blood Bank",
+    "phone": "+911204901234",
+    "address": "W-3, Vaishali, Ghaziabad 201010",
+    "location": { "lat": 28.6433, "lng": 77.3380, "city": "Ghaziabad" },
+    "reliabilityScore": 0.85,
+    "isActive": true
+  },
+  {
+    "id": "bb_027",
+    "name": "Fortis Hospital Noida Blood Bank",
+    "phone": "+911204255000",
+    "address": "B-22, Sector 62, Noida 201309",
+    "location": { "lat": 28.6232, "lng": 77.3637, "city": "Noida" },
+    "reliabilityScore": 0.87,
+    "isActive": true
+  },
+  {
+    "id": "bb_028",
+    "name": "Jaypee Hospital Blood Bank",
+    "phone": "+911205012222",
+    "address": "Sector 128, Noida 201304",
+    "location": { "lat": 28.5195, "lng": 77.3765, "city": "Noida" },
+    "reliabilityScore": 0.85,
+    "isActive": true
+  },
+  {
+    "id": "bb_029",
+    "name": "Felix Hospital Blood Bank",
+    "phone": "+911204556000",
+    "address": "NH-1, Sector 137, Noida 201305",
+    "location": { "lat": 28.5066, "lng": 77.3900, "city": "Noida" },
+    "reliabilityScore": 0.79,
+    "isActive": true
+  },
+  {
+    "id": "bb_030",
+    "name": "Kailash Hospital Blood Bank",
+    "phone": "+911204773773",
+    "address": "H-33, Sector 27, Noida 201301",
+    "location": { "lat": 28.5723, "lng": 77.3260, "city": "Noida" },
+    "reliabilityScore": 0.82,
+    "isActive": true
+  }
+]
