@@ -9,7 +9,7 @@
 
 **AI-powered emergency blood coordination. 35 minutes → 3 minutes.**
 
----
+
 
 ## The Problem
 
@@ -17,7 +17,7 @@
 - No single view of real-time availability across Delhi NCR's 100+ registered blood banks
 - When banks fail, fallback to in-hospital donors is entirely manual and unreliable
 
----
+
 
 ## How It Works
 
@@ -28,15 +28,13 @@
 5. **Confirm** — First bank to reply YES is confirmed; request marked FULFILLED
 6. **Done** — If no bank responds in 8 minutes, FHIR query finds nearest eligible in-hospital donor
 
----
+
 
 ## Architecture
 
 ![HemoSync Architecture](docs/architecture-diagram.png)
 
-> The full interactive diagram is in [`HemoSync_Architecture_v6.html`](HemoSync_Architecture_v6.html).
 
----
 
 ## Azure Services Used
 
@@ -66,7 +64,7 @@
 | Azure Bicep | Infrastructure as Code | [docs](https://learn.microsoft.com/azure/azure-resource-manager/bicep/) |
 | Azure Container Registry | Docker image storage | [docs](https://learn.microsoft.com/azure/container-registry/) |
 
----
+
 
 ## Quick Start
 
@@ -90,7 +88,7 @@ pnpm dev
 
 Dashboard: http://localhost:5173 | Functions: http://localhost:7071
 
----
+
 
 ## Environment Variables
 
@@ -127,7 +125,7 @@ Dashboard: http://localhost:5173 | Functions: http://localhost:7071
 
 See [`.env.example`](.env.example) for the full list with descriptions.
 
----
+
 
 ## Project Structure
 
@@ -160,31 +158,31 @@ Hemosync/
 └── .devcontainer/          # GitHub Codespaces / VS Code Dev Container
 ```
 
----
+
 
 ## API Reference
 
 See [`docs/api-reference.md`](docs/api-reference.md) for full documentation of all 7 endpoints.
 
----
+
 
 ## Deployment
 
 See [`docs/deployment.md`](docs/deployment.md) for step-by-step Azure deployment instructions.
 
----
+
 
 ## Local Development
 
 See [`docs/local-development.md`](docs/local-development.md) for getting running locally in under 5 minutes.
 
----
+
 
 ## Contributing
 
 See [`CONTRIBUTING.md`](CONTRIBUTING.md). PRs welcome.
 
----
+
 
 ## License
 
