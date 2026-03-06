@@ -1,0 +1,65 @@
+<!--
+  cors.xml
+  APIM policy: CORS configuration for HemoSync API.
+  Allows requests from:
+  - Web dashboard (App Service production and staging)
+  - Microsoft Teams (teams.microsoft.com)
+  - WhatsApp webhook domain (hemosync-whatsapp-prod.azurewebsites.net)
+  - Local development (localhost:3000)
+
+  Apply at the API level (not global) to scope it to HemoSync API only.
+-->
+<policies>
+  <inbound>
+    <base />
+    <cors allow-credentials="true">
+      <allowed-origins>
+        <!-- Web dashboard production -->
+        <origin>https://hemosync-web-prod.azurewebsites.net</origin>
+        <!-- Web dashboard staging slot -->
+        <origin>https://hemosync-web-prod-staging.azurewebsites.net</origin>
+        <!-- Microsoft Teams web client -->
+        <origin>https://teams.microsoft.com</origin>
+        <!-- Teams tab embedded origin -->
+        <origin>https://teams.cdn.office.net</origin>
+        <!-- WhatsApp webhook -->
+        <origin>https://hemosync-whatsapp-prod.azurewebsites.net</origin>
+        <!-- Local development -->
+        <origin>http://localhost:3000</origin>
+        <origin>http://localhost:5173</origin>
+      </allowed-origins>
+      <allowed-methods preflight-result-max-age="300">
+        <method>GET</method>
+        <method>POST</method>
+        <method>PUT</method>
+        <method>DELETE</method>
+        <method>PATCH</method>
+        <method>OPTIONS</method>
+      </allowed-methods>
+      <allowed-headers>
+        <header>Content-Type</header>
+        <header>Authorization</header>
+        <header>Ocp-Apim-Subscription-Key</header>
+        <header>x-api-key</header>
+        <header>Accept</header>
+        <header>Origin</header>
+        <header>X-Requested-With</header>
+      </allowed-headers>
+      <expose-headers>
+        <header>X-RateLimit-Limit</header>
+        <header>X-RateLimit-Remaining</header>
+        <header>X-RateLimit-RetryAfter</header>
+        <header>X-Correlation-Id</header>
+      </expose-headers>
+    </cors>
+  </inbound>
+  <backend>
+    <base />
+  </backend>
+  <outbound>
+    <base />
+  </outbound>
+  <on-error>
+    <base />
+  </on-error>
+</policies>
