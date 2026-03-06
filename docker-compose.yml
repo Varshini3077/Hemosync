@@ -1,0 +1,65 @@
+version: "3.9"
+
+# Local development services for HemoSync
+# Mirrors Azure Cache for Redis + Azure Database for PostgreSQL
+# Usage: docker compose up -d
+
+services:
+  postgres:
+    image: postgres:16-alpine
+    container_name: hemosync-postgres
+    restart: unless-stopped
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: hemosync
+      POSTGRES_PASSWORD: hemosync_dev
+      POSTGRES_DB: hemosync_audit
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./db/schema.sql:/docker-entrypoint-initdb.d/01_schema.sql
+      - ./db/migrations:/docker-entrypoint-initdb.d/migrations
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U hemosync -d hemosync_audit"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  redis:
+    image: redis:7-alpine
+    container_name: hemosync-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    command: redis-server --appendonly yes --requirepass hemosync_dev
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "-a", "hemosync_dev", "ping"]
+      interval: 10s
+      timeout: 3s
+      retries: 5
+
+  azurite:
+    image: mcr.microsoft.com/azure-storage/azurite:latest
+    container_name: hemosync-azurite
+    restart: unless-stopped
+    ports:
+      - "10000:10000"  # Blob
+      - "10001:10001"  # Queue
+      - "10002:10002"  # Table
+    volumes:
+      - azurite_data:/data
+    command: azurite --loose --location /data --debug /data/debug.log
+
+volumes:
+  postgres_data:
+    name: hemosync_postgres_data
+  redis_data:
+    name: hemosync_redis_data
+  azurite_data:
+    name: hemosync_azurite_data
+
+networks:
+  default:
+    name: hemosync-network
