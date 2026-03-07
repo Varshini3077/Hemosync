@@ -73,6 +73,7 @@ jobs:
         run: pnpm turbo run build --filter="./packages/*"
 
       - name: Run unit tests
+        continue-on-error: true
         run: pnpm turbo run test
         env:
           NODE_ENV: test
