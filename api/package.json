@@ -15,10 +15,10 @@
   },
   "dependencies": {
     "@azure/functions": "^4.0.0",
-    "@azure/openai": "^1.0.0",
+    "@azure/openai": "^2.0.0",
     "@azure/cosmos": "^4.0.0",
-    "@azure/maps-search": "^1.0.0",
-    "@azure/maps-route": "^1.0.0",
+    "@azure-rest/maps-search": "^2.0.0-beta.3",
+    "@azure-rest/maps-route": "^1.0.0-beta.5",
     "@azure/communication-sms": "^1.1.0",
     "@azure/communication-email": "^1.0.0",
     "@azure/keyvault-secrets": "^4.7.0",
