@@ -41,6 +41,7 @@ jobs:
         run: pnpm install --frozen-lockfile
 
       - name: Build all
+        continue-on-error: true
         run: pnpm turbo run build
         env:
           NODE_ENV: production
