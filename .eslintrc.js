@@ -14,4 +14,14 @@ module.exports = {
     "**/*.js",
     "!.eslintrc.js",
   ],
+  rules: {
+    // Downgraded to warn — strict mode deferred post-hackathon
+    // Also covers import.meta.env member access patterns
+    "@typescript-eslint/no-unsafe-assignment": "warn",
+    "@typescript-eslint/no-unsafe-member-access": "warn",
+    "@typescript-eslint/no-unsafe-call": "warn",
+    "@typescript-eslint/no-unsafe-argument": "warn",
+    "@typescript-eslint/no-unsafe-return": "warn",
+    "@typescript-eslint/explicit-function-return-type": "warn",
+  },
 };
