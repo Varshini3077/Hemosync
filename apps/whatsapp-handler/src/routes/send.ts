@@ -2,8 +2,8 @@
  * POST /send — internal route called by the sms-webhook Azure Function to
  * send a WhatsApp confirmation back to the coordinator via ACS.
  *
- * Uses @azure/communication-messages NotificationMessagesClient to send a
- * templated WhatsApp message.
+ * Sends a templated WhatsApp message via the ACS messaging REST client,
+ * loaded dynamically to avoid a static @azure/communication-messages import.
  */
 
 import { Router, Request, Response } from "express";
@@ -56,7 +56,9 @@ sendRouter.post("/", async (req: Request, res: Response): Promise<void> => {
 });
 
 async function sendConfirmationWhatsApp(payload: SendPayload): Promise<void> {
-  const client = new NotificationMessagesClient(ACS_CONNECTION_STRING);
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const { NotificationMessagesClient } = require("@azure/communication-messages") as { NotificationMessagesClient: any };
+  const client: any = new NotificationMessagesClient(ACS_CONNECTION_STRING);
 
   const templateName = "hemosync_blood_confirmation";
   const templateLanguage = "en_US";
