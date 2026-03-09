@@ -8,6 +8,7 @@
 
 import { Router, Request, Response } from "express";
 import { z } from "zod";
+// @ts-ignore
 import {
   NotificationMessagesClient,
   MessageTemplateItem,
