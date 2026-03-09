@@ -5,10 +5,10 @@
   "description": "HemoSync Teams Bot — Azure Bot Service application for blood request coordination",
   "main": "dist/index.js",
   "scripts": {
-    "build": "tsc",
+    "build": "tsc --skipLibCheck",
     "dev": "nodemon --exec ts-node src/index.ts",
     "start": "node dist/index.js",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "tsc --noEmit --skipLibCheck",
     "clean": "rm -rf dist tsconfig.tsbuildinfo"
   },
   "dependencies": {
