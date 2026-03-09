@@ -8,13 +8,6 @@
 
 import { Router, Request, Response } from "express";
 import { z } from "zod";
-// @ts-ignore
-import {
-  NotificationMessagesClient,
-  MessageTemplateItem,
-  MessageTemplateValue,
-  MessageTemplateBindings,
-} from "@azure/communication-messages";
 
 const ACS_CONNECTION_STRING =
   process.env["ACS_CONNECTION_STRING"] ?? "";
@@ -69,7 +62,7 @@ async function sendConfirmationWhatsApp(payload: SendPayload): Promise<void> {
   const templateLanguage = "en_US";
 
   // Template: "✅ Blood confirmed: {1} units {2} at {3}. Call: {4}. Req: {5}"
-  const templateValues: MessageTemplateValue[] = [
+  const templateValues: any[] = [
     {
       name: "units",
       kind: "text",
@@ -97,12 +90,12 @@ async function sendConfirmationWhatsApp(payload: SendPayload): Promise<void> {
     },
   ];
 
-  const bindings: MessageTemplateBindings = {
+  const bindings: any = {
     kind: "whatsApp",
     body: templateValues.map((v) => ({ refValue: v.name })),
   };
 
-  const template: MessageTemplateItem = {
+  const template: any = {
     name: templateName,
     language: templateLanguage,
     bindings,
