@@ -20,7 +20,7 @@ const ACS_CONNECTION_STRING =
 const ACS_CHANNEL_ID =
   process.env["ACS_WHATSAPP_CHANNEL_ID"] ?? "";
 
-export const sendRouter = Router();
+export const sendRouter: Router = Router();
 
 const SendPayloadSchema = z.object({
   to: z.string().min(1, "Recipient phone number is required"),

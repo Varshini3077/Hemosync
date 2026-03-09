@@ -15,7 +15,7 @@ import { parseWhatsAppMessage } from "../messageParser.js";
 const API_BASE_URL =
   process.env["HEMOSYNC_API_URL"] ?? "http://localhost:7071/api";
 
-export const webhookRouter = Router();
+export const webhookRouter: Router = Router();
 
 // ACS webhook validation — GET with challenge token
 webhookRouter.get("/whatsapp", (req: Request, res: Response): void => {
