@@ -68,7 +68,7 @@ export class HemoSyncBot extends TeamsActivityHandler {
     await this.conversationState.saveChanges(context, false);
   }
 
-  override async onTeamsTaskModuleFetch(
+  async onTeamsTaskModuleFetch(
     context: TurnContext,
     taskModuleRequest: TaskModuleRequest
   ): Promise<TaskModuleResponse> {
@@ -89,7 +89,7 @@ export class HemoSyncBot extends TeamsActivityHandler {
     };
   }
 
-  override async onTeamsTaskModuleSubmit(
+  async onTeamsTaskModuleSubmit(
     context: TurnContext,
     taskModuleRequest: TaskModuleRequest
   ): Promise<TaskModuleResponse> {
