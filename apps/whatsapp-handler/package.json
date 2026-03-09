@@ -13,7 +13,6 @@
   },
   "dependencies": {
     "@azure-rest/communication-messages": "^2.0.0",
-    "@azure/communication-messages": "^1.0.0",
     "@azure/identity": "^4.0.0",
     "@hemosync/types": "workspace:*",
     "axios": "^1.6.7",
