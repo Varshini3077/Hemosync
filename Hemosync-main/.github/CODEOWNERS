@@ -1,0 +1,41 @@
+# HemoSync CODEOWNERS
+# Syntax: <pattern> <owner> [<owner> ...]
+# See: https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners
+
+# Default: all files require review from the core team
+* @Varshini3077
+
+# Root configuration and CI/CD
+/.github/ @Varshini3077
+/turbo.json @Varshini3077
+/package.json @Varshini3077
+/pnpm-workspace.yaml @Varshini3077
+
+# Infrastructure (Bicep) — requires infra owner sign-off
+/infra/ @Varshini3077
+
+# API (Azure Functions) — requires API owner sign-off
+/api/ @Varshini3077
+
+# Web dashboard
+/apps/web/ @Varshini3077
+
+# Teams bot
+/apps/teams-bot/ @Varshini3077
+
+# WhatsApp handler
+/apps/whatsapp-handler/ @Varshini3077
+
+# Shared packages
+/packages/ @Varshini3077
+
+# Database schema and migrations — extra caution
+/db/schema.sql @Varshini3077
+/db/migrations/ @Varshini3077
+
+# Security-sensitive files — always require review
+/api/middleware/auth.ts @Varshini3077
+/api/middleware/keyvault.ts @Varshini3077
+/infra/modules/keyvault.bicep @Varshini3077
+/infra/modules/sentinel.bicep @Varshini3077
+SECURITY.md @Varshini3077

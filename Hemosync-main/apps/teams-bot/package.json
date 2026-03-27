@@ -1,0 +1,30 @@
+{
+  "name": "@hemosync/teams-bot",
+  "version": "0.0.0",
+  "private": true,
+  "description": "HemoSync Teams Bot — Azure Bot Service application for blood request coordination",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "tsc --skipLibCheck",
+    "dev": "nodemon --exec ts-node src/index.ts",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit --skipLibCheck",
+    "clean": "rm -rf dist tsconfig.tsbuildinfo"
+  },
+  "dependencies": {
+    "@azure/identity": "^4.0.0",
+    "@hemosync/types": "workspace:*",
+    "@microsoft/microsoft-graph-client": "^3.0.7",
+    "axios": "^1.6.7",
+    "botbuilder": "^4.23.1",
+    "botframework-connector": "^4.23.1",
+    "restify": "^11.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.5",
+    "@types/restify": "^8.5.12",
+    "nodemon": "^3.0.3",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}

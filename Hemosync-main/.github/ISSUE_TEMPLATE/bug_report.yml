@@ -1,0 +1,105 @@
+name: Bug Report
+description: Report a bug in HemoSync
+title: "[Bug]: "
+labels: ["bug", "triage"]
+assignees: []
+
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a bug. Please fill in as much detail as possible so we can reproduce and fix the issue quickly.
+
+  - type: dropdown
+    id: component
+    attributes:
+      label: Affected Component
+      description: Which part of HemoSync is affected?
+      options:
+        - Web Dashboard (apps/web)
+        - Teams Bot (apps/teams-bot)
+        - WhatsApp Handler (apps/whatsapp-handler)
+        - API — parse-request function
+        - API — ranked-banks function
+        - API — broadcast function
+        - API — sms-webhook function
+        - API — fallback-donors function
+        - API — embed-token function
+        - Infrastructure / Bicep
+        - Database (PostgreSQL / Cosmos DB)
+        - Authentication / APIM
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Bug Description
+      description: A clear and concise description of what the bug is.
+      placeholder: When I submit a blood request, the broadcast function throws a 500 error...
+    validations:
+      required: true
+
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to Reproduce
+      description: Step-by-step instructions to reproduce the behaviour.
+      placeholder: |
+        1. Go to Dashboard → New Request
+        2. Fill in blood type 'O+', urgency 'Critical', quantity '2'
+        3. Submit
+        4. See error in broadcast function logs
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected Behaviour
+      description: What did you expect to happen?
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual Behaviour
+      description: What actually happened? Include error messages and stack traces.
+    validations:
+      required: true
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Relevant Logs
+      description: Paste Application Insights or local console logs. **Do NOT paste secrets or keys.**
+      render: text
+
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Environment
+      options:
+        - Local development
+        - Staging
+        - Production
+    validations:
+      required: true
+
+  - type: input
+    id: version
+    attributes:
+      label: Version / Commit SHA
+      placeholder: v1.2.3 or abc1234
+
+  - type: checkboxes
+    id: checklist
+    attributes:
+      label: Checklist
+      options:
+        - label: I have searched existing issues and this is not a duplicate
+          required: true
+        - label: I have not included any secrets or API keys in this report
+          required: true

@@ -1,0 +1,153 @@
+name: Create Hackathon Release
+
+on:
+  push:
+    tags:
+      - 'v1.0.0'
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Tag to release (e.g. v1.0.0)'
+        required: true
+        default: 'v1.0.0'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publish GitHub Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Resolve tag name
+        id: tag
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            echo "name=${{ github.event.inputs.tag }}" >> "$GITHUB_OUTPUT"
+          else
+            echo "name=${GITHUB_REF#refs/tags/}" >> "$GITHUB_OUTPUT"
+          fi
+
+      - name: Create GitHub Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag.outputs.name }}
+          name: "HemoSync v1.0.0 — Microsoft AI Unlocked Hackathon Submission"
+          body: |
+            ## HemoSync v1.0.0 — Microsoft AI Unlocked Hackathon Submission
+
+            > **AI-powered emergency blood coordination. 35 minutes → 3 minutes.**
+
+            ---
+
+            ### What Was Built
+
+            HemoSync transforms how hospitals source emergency blood. A coordinator sends a
+            single voice note or text message — HemoSync parses it, ranks nearby blood banks,
+            broadcasts SMS requests simultaneously, and confirms the first responder automatically.
+            When no bank has stock, a FHIR query finds the nearest eligible in-hospital donor.
+
+            ---
+
+            ### Serverless Backend — 7 Azure Functions
+
+            | Function | Trigger | Role |
+            |---|---|---|
+            | `parseRequest` | HTTP POST | GPT-4o extracts blood type, units, urgency, hospital |
+            | `broadcastSMS` | Service Bus | Fans out MSG91 SMS to top-5 ranked banks |
+            | `handleSMSReply` | HTTP POST | Parses bank reply, marks request FULFILLED |
+            | `rankBanks` | HTTP GET | Scores banks by proximity, reliability, Redis-cached stock |
+            | `fhirDonorFallback` | HTTP POST | Queries Azure API for FHIR when all banks time out |
+            | `eRaktKoshSync` | Timer (hourly) | Syncs live stock from National Blood Transfusion Council eRaktKosh API |
+            | `teamsWebhook` | HTTP POST | Receives and forwards Teams adaptive cards to the pipeline |
+
+            ---
+
+            ### Interfaces — 3 Channels
+
+            - **Microsoft Teams Bot** — Adaptive Card UI, voice note transcription via Azure AI Speech, rich confirmation cards
+            - **WhatsApp Handler** — Azure Communication Services WhatsApp channel; coordinators use their existing phone workflow
+            - **Web Dashboard** — React + Vite SPA hosted on Azure Static Web Apps; real-time request tracker, Power BI Embedded analytics panel, MSAL authentication
+
+            ---
+
+            ### Azure Services — 23 Total
+
+            | Layer | Services |
+            |---|---|
+            | Compute | Azure Functions v4, Azure App Service, Azure Static Web Apps |
+            | AI / ML | Azure OpenAI (GPT-4o), Azure AI Speech |
+            | Data | Azure Cosmos DB, Azure Database for PostgreSQL, Azure Cache for Redis |
+            | Messaging | Azure Service Bus, Azure Communication Services (WhatsApp + SMS) |
+            | Integration | Azure Bot Service (Teams), Azure API Management, Azure Maps |
+            | Health | Azure API for FHIR |
+            | Security | Azure Key Vault, Microsoft Entra ID (MSAL), Microsoft Sentinel |
+            | Observability | Azure Application Insights, Azure Monitor |
+            | DevOps | Azure Bicep, Azure Container Registry |
+            | Analytics | Power BI Embedded |
+            | Identity | Microsoft Graph API |
+
+            ---
+
+            ### eRaktKosh Integration
+
+            The `eRaktKoshSync` function runs on an hourly timer and calls the National Blood
+            Transfusion Council's eRaktKosh REST API to pull live blood stock levels for all
+            registered banks in the Delhi NCR region. Results are written to Cosmos DB and
+            invalidate the Redis rank cache, so every broadcast reflects current availability.
+
+            ---
+
+            ### FHIR Fallback Donor Finder
+
+            If no blood bank confirms within 8 minutes, `fhirDonorFallback` queries
+            **Azure API for FHIR** for Patient resources tagged as active blood donors whose
+            blood type matches the request. The closest eligible donor (by hospital ward
+            geo-coordinates) is surfaced to the coordinator via Teams/WhatsApp with a
+            one-tap contact card.
+
+            ---
+
+            ### One-Command Bicep Deployment
+
+            The entire 23-service infrastructure is defined in modular Bicep:
+
+            ```bash
+            cd infra
+            ./deploy.sh --env production --location eastus --subscription <sub-id>
+            ```
+
+            `deploy.sh` calls `az deployment sub create` with `main.bicep` as the
+            orchestrator. All secrets are written directly to Key Vault; no `.env` files
+            leave the developer machine. A GitHub Actions workflow (`deploy-production.yml`)
+            mirrors this for CD on every merge to `main`.
+
+            ---
+
+            ### Repository Highlights
+
+            - **Monorepo** — `pnpm` workspaces + Turborepo; shared TypeScript 5.4 packages
+            - **Tests** — Vitest unit tests for all functions; Playwright E2E for the web app
+            - **Dev loop** — single `pnpm dev` starts Functions emulator + Vite + Docker deps
+            - **Codespaces** — one-click `devcontainer.json` with all extensions pre-installed
+            - **Docs** — ADRs, API reference, deployment guide, local development guide
+
+            ---
+
+            ### Team
+
+            Built for the **Microsoft AI Unlocked Hackathon** by **@Varshini3077**.
+
+            ---
+
+            **Full source:** https://github.com/Varshini3077/Hemosync
+            **Deployment guide:** [docs/deployment.md](docs/deployment.md)
+            **API reference:** [docs/api-reference.md](docs/api-reference.md)
+          draft: false
+          prerelease: false
+          token: ${{ secrets.GITHUB_TOKEN }}

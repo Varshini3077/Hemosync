@@ -1,0 +1,43 @@
+{
+  "name": "hemosync",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Azure-powered emergency blood coordination platform",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Varshini3077/Hemosync.git"
+  },
+  "license": "MIT",
+  "engines": {
+    "node": ">=20.0.0",
+    "pnpm": ">=8.0.0"
+  },
+  "packageManager": "pnpm@8.15.6",
+  "scripts": {
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "lint": "turbo run lint",
+    "typecheck": "turbo run typecheck",
+    "test": "turbo run test",
+    "test:integration": "turbo run test:integration",
+    "clean": "turbo run clean && rm -rf node_modules",
+    "format": "prettier --write \"**/*.{ts,tsx,js,jsx,json,md,yaml,yml}\"",
+    "format:check": "prettier --check \"**/*.{ts,tsx,js,jsx,json,md,yaml,yml}\"",
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "turbo run build && changeset publish"
+  },
+  "devDependencies": {
+    "@changesets/cli": "^2.27.1",
+    "@hemosync/eslint-config": "workspace:*",
+    "@hemosync/tsconfig": "workspace:*",
+    "prettier": "^3.2.5",
+    "turbo": "^1.13.3",
+    "typescript": "^5.4.5"
+  },
+  "workspaces": [
+    "apps/*",
+    "api",
+    "packages/*"
+  ]
+}

@@ -1,0 +1,49 @@
+<!--
+  auth-validate.xml
+  APIM policy: validates the x-api-key header against APIM subscriptions.
+  The x-api-key value must match the Ocp-Apim-Subscription-Key header value.
+  Requests without a valid subscription key are rejected with HTTP 401.
+  Apply at the API or global policy level.
+-->
+<policies>
+  <inbound>
+    <base />
+    <!-- Enforce subscription key presence via standard APIM mechanism -->
+    <!-- subscriptionRequired=true on the API is the primary enforcement gate -->
+
+    <!-- Additionally validate x-api-key header equals the subscription key -->
+    <check-header
+      name="x-api-key"
+      failed-check-httpcode="401"
+      failed-check-error-message="Unauthorized: missing or invalid x-api-key header"
+      ignore-case="false">
+    </check-header>
+
+    <!-- Cross-validate: x-api-key must match Ocp-Apim-Subscription-Key -->
+    <choose>
+      <when condition="@(context.Request.Headers.GetValueOrDefault("x-api-key", "") != context.Request.Headers.GetValueOrDefault("Ocp-Apim-Subscription-Key", ""))">
+        <return-response>
+          <set-status code="401" reason="Unauthorized" />
+          <set-header name="Content-Type" exists-action="override">
+            <value>application/json</value>
+          </set-header>
+          <set-body>{"error": "unauthorized", "message": "x-api-key header does not match subscription key."}</set-body>
+        </return-response>
+      </when>
+    </choose>
+
+    <!-- Log auth attempt to Application Insights -->
+    <trace source="auth-validate" severity="verbose">
+      <message>@($"Auth validated for subscription: {context.Subscription.Id} from IP: {context.Request.IpAddress}")</message>
+    </trace>
+  </inbound>
+  <backend>
+    <base />
+  </backend>
+  <outbound>
+    <base />
+  </outbound>
+  <on-error>
+    <base />
+  </on-error>
+</policies>
